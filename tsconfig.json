@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+      "module": "commonjs",
+      "target": "es6",
+      "lib": ["es6"],
+      "noImplicitAny": false,
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "outDir": "dist",
+      "baseUrl": ".",
+      "types": ["reflect-metadata"],
+      "allowJs": false,
+      "alwaysStrict":true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "allowSyntheticDefaultImports": false,
+      "allowUnreachableCode": false,
+      "paths": {
+          "*": [
+              "node_modules/*",
+              "src/types/*"
+          ]
+      }
+  },
+  "include": [
+      "src/**/*"
+  ]
+}
