@@ -97,6 +97,24 @@ it('should return all data for a given event of a given sport', async function (
   assert.equal(event.total_outcomes, expectedEvent.total_outcomes);
 });
 
+it('should return undefined data for a non existant event', async function () {
+
+  const mockGateway: IBetvictorGateway = {
+    getAllSports: function(): Promise<string[]> {
+      return new Promise((res, rej) => res([JSON.stringify(predefinedSport)]));
+    }
+  };
+
+  const svc: ISportService = new SportService(mockGateway);
+
+  const sportId = 100;
+  const nonExistantEventId = 1;
+  const event = await svc.getEvent(sportId, nonExistantEventId).then(evt => evt).catch(e => { return undefined; });
+
+  assert.equal(event, undefined);
+
+});
+
 
 const predefinedSport = {
     "id": 100,

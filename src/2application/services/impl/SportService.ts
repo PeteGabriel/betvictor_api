@@ -43,7 +43,14 @@ export class SportService implements ISportService {
         .then((res) => res)
         .then(sports => sports.map(sp => new Sport(JSON.parse(sp))))
         .then(sports => sports.find(sp => sp.id === sportId).events)
-        .then(events => events.find(evt => evt.id === eventId))
+        .then(events => {
+          const evt = events.find(evt => evt.id === eventId);
+          if (evt == undefined) {
+            throw new Error(`Event with id ${eventId} not found.`);
+          } else {
+            return evt;
+          }
+        })
         .then(event => resolve(event))
         .catch((e) => { reject(e); });
     });
