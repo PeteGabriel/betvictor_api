@@ -36,4 +36,16 @@ export class SportService implements ISportService {
         .catch((e) => { reject(e); });
     });
   }
+
+  getEvent(sportId: number, eventId: number): Promise<Event> {
+    return new Promise(async (resolve, reject) => {
+      return await this.gateway.getAllSports()
+        .then((res) => res)
+        .then(sports => sports.map(sp => new Sport(JSON.parse(sp))))
+        .then(sports => sports.find(sp => sp.id === sportId).events)
+        .then(events => events.find(evt => evt.id === eventId))
+        .then(event => resolve(event))
+        .catch((e) => { reject(e); });
+    });
+  }
 }

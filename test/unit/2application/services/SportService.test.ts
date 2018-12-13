@@ -55,8 +55,23 @@ it('should return an array of events for a given sport', async function () {
   const sportId = 100;
   const events = await svc.getEvents(sportId).then(sp => sp).catch(e => { return []; });
   assert.equal(events.length, 1);
+});
 
-  const event = events[0];
+
+it('should return all data for a given event of a given sport', async function () {
+
+  const mockGateway: IBetvictorGateway = {
+    getAllSports: function(): Promise<string[]> {
+      return new Promise((res, rej) => res([JSON.stringify(predefinedSport)]));
+    }
+  };
+
+  const svc: ISportService = new SportService(mockGateway);
+
+  const sportId = 100;
+  const eventId = 1013539500;
+  const event = await svc.getEvent(sportId, eventId).then(evt => evt).catch(e => { return undefined; });
+
   const expectedEvent = predefinedSport.events[0];
 
   assert.equal(event.id, expectedEvent.id);

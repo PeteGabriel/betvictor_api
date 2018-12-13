@@ -4,4 +4,5 @@ import { Sport } from '../../domain/Sport';
 export interface ISportService {
   getSports(): Promise<Sport[]>;
   getEvents(sportId: number): Promise<Event[]>;
+  getEvent(sportId: number, eventId: number): Promise<Event>;
 }
