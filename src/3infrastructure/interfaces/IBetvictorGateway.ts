@@ -1,5 +1,5 @@
 
 
 export interface IBetvictorGateway {
-  getAllSports(): Promise<String[]>;
+  getAllSports(): Promise<string[]>;
 }

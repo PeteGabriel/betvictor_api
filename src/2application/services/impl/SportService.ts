@@ -2,6 +2,7 @@ import { inject, injectable } from "inversify";
 import "reflect-metadata";
 import { IBetvictorGateway } from "../../../3infrastructure/interfaces/IBetvictorGateway";
 import TYPES from '../../../config/types';
+import { Event } from "../../domain/Event";
 import { Sport } from "../../domain/Sport";
 import { ISportService } from "../interfaces/ISportService";
 
@@ -21,6 +22,17 @@ export class SportService implements ISportService {
         .then((res) => res)
         .then(sports => sports.map(sp => new Sport(JSON.parse(sp))))
         .then(sports => resolve(sports))
+        .catch((e) => { reject(e); });
+    });
+  }
+
+  getEvents(sportId: number): Promise<Event[]> {
+    return new Promise(async (resolve, reject) => {
+      return await this.gateway.getAllSports()
+        .then((res) => res)
+        .then(sports => sports.map(sp => new Sport(JSON.parse(sp))))
+        .then(sports => sports.find(sp => sp.id === sportId).events)
+        .then(events => resolve(events))
         .catch((e) => { reject(e); });
     });
   }

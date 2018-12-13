@@ -5,7 +5,7 @@ export class BetvictorGateway implements IBetvictorGateway {
 
   readonly BetvictorUri = 'http://www.betvictor.com/live/en/live/list.json';
 
-  getAllSports(): Promise<String[]> {
+  getAllSports(): Promise<string[]> {
     return new Promise((resolve, reject) => {
       http.get(this.BetvictorUri, (res) => {
         const { statusCode } = res;
