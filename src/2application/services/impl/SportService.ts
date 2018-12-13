@@ -1,9 +1,9 @@
-import { ISportService } from "../interfaces/ISportService";
-import { Sport } from "../../domain/Sport";
 import { inject, injectable } from "inversify";
+import "reflect-metadata";
 import { IBetvictorGateway } from "../../../3infrastructure/interfaces/IBetvictorGateway";
 import TYPES from '../../../config/types';
-import "reflect-metadata";
+import { Sport } from "../../domain/Sport";
+import { ISportService } from "../interfaces/ISportService";
 
 @injectable()
 export class SportService implements ISportService {
@@ -19,7 +19,7 @@ export class SportService implements ISportService {
     return new Promise(async (resolve, reject) => {
       return await this.gateway.getAllSports()
         .then((res) => res)
-        .then(sports => sports.map(sp => new Sport(sp)))
+        .then(sports => sports.map(sp => new Sport(JSON.parse(sp))))
         .then(sports => resolve(sports))
         .catch((e) => { reject(e); });
     });
