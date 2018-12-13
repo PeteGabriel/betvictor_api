@@ -4,6 +4,8 @@ const TYPES = {
   SportService: Symbol("SportService"),
   // gateways
   BetvictorGateway: Symbol("BetvictorGateway"),
+
+  Cache: Symbol("Cache")
 };
 
 export default TYPES;

@@ -2,8 +2,6 @@ import "reflect-metadata";
 import { SportService } from '../../../../src/2application/services/impl/SportService';
 import { ISportService } from '../../../../src/2application/services/interfaces/ISportService';
 import { IBetvictorGateway } from '../../../../src/3infrastructure/interfaces/IBetvictorGateway';
-const assert = require('assert');
-
 const predefinedSport = require('./../../../mock_data/all_sports.json');
 
 it('should return an array of Sport instances', async function () {
@@ -17,16 +15,16 @@ it('should return an array of Sport instances', async function () {
   const svc: ISportService = new SportService(mockGateway);
 
   const sports = await svc.getSports().then(sp => sp).catch(e => { throw e; });
-  assert.equal(sports.length, 1);
+  expect(sports.length).toBe(1);
   const sport = sports[0];
   const expectedEvent = predefinedSport.sports[0];
 
-  assert.equal(sport.id, expectedEvent.id);
-  assert.equal(sport.is_virtual, expectedEvent.is_virtual);
-  assert.equal(sport.meetings.length, expectedEvent.meetings.length);
-  assert.equal(sport.pos, expectedEvent.pos);
-  assert.equal(sport.events.length, expectedEvent.events.length);
-  assert.equal(sport.title, expectedEvent.title);
+  expect(sport.id).toBe(expectedEvent.id);
+  expect(sport.is_virtual).toBe(expectedEvent.is_virtual);
+  expect(sport.meetings.length).toBe(expectedEvent.meetings.length);
+  expect(sport.pos).toBe(expectedEvent.pos);
+  expect(sport.events.length).toBe(expectedEvent.events.length);
+  expect(sport.title).toBe(expectedEvent.title);
 
 });
 
@@ -41,7 +39,7 @@ it('should return an empty array to fail safe in case of error', async function 
   const svc: ISportService = new SportService(mockGateway);
 
   const sports = await svc.getSports().then(sp => sp).catch(e => { return []; });
-  assert.equal(sports.length, 0);
+  expect(sports.length).toBe(0);
 });
 
 
@@ -57,7 +55,7 @@ it('should return an array of events for a given sport', async function () {
 
   const sportId = 100;
   const events = await svc.getEvents(sportId).then(sp => sp).catch(e => { return []; });
-  assert.equal(events.length, 10);
+  expect(events.length).toBe(10);
 });
 
 
@@ -77,27 +75,27 @@ it('should return all data for a given event of a given sport', async function (
 
   const expectedEvent = predefinedSport.sports[0].events[0];
 
-  assert.equal(event.id, expectedEvent.id);
-  assert.equal(event.is_virtual, expectedEvent.is_virtual);
-  assert.equal(event.outcomes.length, expectedEvent.outcomes.length);
-  assert.equal(event.event_id, expectedEvent.event_id);
-  assert.equal(event.title, expectedEvent.title);
-  assert.equal(event.market_id, expectedEvent.market_id);
-  assert.equal(event.market_type_id, expectedEvent.market_type_id);
-  assert.equal(event.score, expectedEvent.score);
-  assert.equal(event.description, expectedEvent.description);
-  assert.equal(event.start_time, expectedEvent.start_time);
-  assert.equal(event.meeting, expectedEvent.meeting);
-  assert.equal(event.meeting_id, expectedEvent.meeting_id);
-  assert.equal(event.media, expectedEvent.media);
-  assert.equal(event.american_format, expectedEvent.american_format);
-  assert.equal(event.event_type, expectedEvent.event_type);
-  assert.equal(event.pos, expectedEvent.pos);
-  assert.equal(event.home_team, expectedEvent.home_team);
-  assert.equal(event.away_team, expectedEvent.away_team);
-  assert.equal(event.period_id, expectedEvent.period_id);
-  assert.equal(event.status_type, expectedEvent.status_type);
-  assert.equal(event.total_outcomes, expectedEvent.total_outcomes);
+  expect(event.id).toBe(expectedEvent.id);
+  expect(event.is_virtual).toBe(expectedEvent.is_virtual);
+  expect(event.outcomes.length).toBe(expectedEvent.outcomes.length);
+  expect(event.event_id).toBe(expectedEvent.event_id);
+  expect(event.title).toBe(expectedEvent.title);
+  expect(event.market_id).toBe(expectedEvent.market_id);
+  expect(event.market_type_id).toBe(expectedEvent.market_type_id);
+  expect(event.score).toBe(expectedEvent.score);
+  expect(event.description).toBe(expectedEvent.description);
+  expect(event.start_time).toBe(expectedEvent.start_time);
+  expect(event.meeting).toBe(expectedEvent.meeting);
+  expect(event.meeting_id).toBe(expectedEvent.meeting_id);
+  expect(event.media).toBe(expectedEvent.media);
+  expect(event.american_format).toBe(expectedEvent.american_format);
+  expect(event.event_type).toBe(expectedEvent.event_type);
+  expect(event.pos).toBe(expectedEvent.pos);
+  expect(event.home_team).toBe(expectedEvent.home_team);
+  expect(event.away_team).toBe(expectedEvent.away_team);
+  expect(event.period_id).toBe(expectedEvent.period_id);
+  expect(event.status_type).toBe(expectedEvent.status_type);
+  expect(event.total_outcomes).toBe(expectedEvent.total_outcomes);
 });
 
 it('should return undefined data for a non existant event', async function () {
@@ -114,6 +112,6 @@ it('should return undefined data for a non existant event', async function () {
   const nonExistantEventId = 1;
   const event = await svc.getEvent(sportId, nonExistantEventId).then(evt => evt).catch(e => { return undefined; });
 
-  assert.equal(event, undefined);
+  expect(event).toBe(undefined);
 
 });

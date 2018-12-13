@@ -3,7 +3,7 @@ import { Server } from "http";
 import app from "./app";
 const http = require("http");
 
-import { logger } from "./config/Logger";
+import { logger } from "./3infrastructure/config/Logger";
 
 /**
  * Get port from environment and store in Express.
@@ -12,7 +12,7 @@ const port = normalizePort(process.env.PORT || 3000);
 app.set("port", port);
 
 const server: Server = http.createServer(app);
-// Listen on provided port, on all network interfaces.
+
 server.listen(port);
 server.on("error", onError);
 server.on("listening", onListening);

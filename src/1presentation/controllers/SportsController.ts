@@ -15,6 +15,9 @@ export class SportsController implements Registrable {
   readonly ListAllEventsForSportUri = "/api/sports/:id/events";
   readonly ListAllDataForEvent = "/api/sports/:id/events/:eid";
 
+  readonly OkResponseCode = 200;
+  readonly ServerErrResponseCode = 500;
+
   @inject(TYPES.SportService)
   private sportsService: ISportService;
 
@@ -36,7 +39,7 @@ export class SportsController implements Registrable {
     return async (_: express.Request, res: express.Response) => {
 
       const onRes = (data) => {
-        res.status(200).send(data);
+        res.status(this.OkResponseCode).send(data);
         return data;
       };
 
@@ -49,7 +52,7 @@ export class SportsController implements Registrable {
           res.status(err.code).type(ProblemJsonMediaType).send(response);
           return;
         }
-        res.status(500).send(err);
+        res.status(this.ServerErrResponseCode).send(err);
         return;
       };
 
@@ -61,7 +64,7 @@ export class SportsController implements Registrable {
     return async (req: express.Request, res: express.Response) => {
 
       const onRes = (data) => {
-        res.status(200).send(data);
+        res.status(this.OkResponseCode).send(data);
         return data;
       };
 
@@ -74,7 +77,7 @@ export class SportsController implements Registrable {
           res.status(err.code).type(ProblemJsonMediaType).send(response);
           return;
         }
-        res.status(500).send(err);
+        res.status(this.ServerErrResponseCode).send(err);
         return;
       };
 
@@ -86,7 +89,7 @@ export class SportsController implements Registrable {
     return async (req: express.Request, res: express.Response) => {
 
       const onRes = (data) => {
-        res.status(200).send(data);
+        res.status(this.OkResponseCode).send(data);
         return data;
       };
 
@@ -99,7 +102,7 @@ export class SportsController implements Registrable {
           res.status(err.code).type(ProblemJsonMediaType).send(response);
           return;
         }
-        res.status(500).send(err);
+        res.status(this.ServerErrResponseCode).send(err);
         return;
       };
 
