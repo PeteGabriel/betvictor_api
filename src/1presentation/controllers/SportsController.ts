@@ -18,7 +18,7 @@ export class SportsController implements Registrable {
   @inject(TYPES.SportService)
   private sportsService: ISportService;
 
-  constructor(sportsService: ISportService) {
+  constructor(@inject(TYPES.SportService) sportsService: ISportService) {
     this.sportsService = sportsService;
   }
 

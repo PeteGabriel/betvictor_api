@@ -16,7 +16,7 @@ export class SportService implements ISportService {
   @inject(TYPES.BetvictorGateway)
   private gateway: IBetvictorGateway;
 
-  constructor(gate: IBetvictorGateway) {
+  constructor(@inject(TYPES.BetvictorGateway) gate: IBetvictorGateway) {
     this.gateway = gate;
   }
 
