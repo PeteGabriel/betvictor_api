@@ -1,6 +1,9 @@
+import { injectable } from "inversify";
+import { HttpError } from "../../2application/domain/errors/HttpError";
 import { IBetvictorGateway } from "../interfaces/IBetvictorGateway";
 const http = require("http");
 
+@injectable()
 export class BetvictorGateway implements IBetvictorGateway {
 
   readonly BetvictorUri = 'http://www.betvictor.com/live/en/live/list.json';
@@ -8,10 +11,10 @@ export class BetvictorGateway implements IBetvictorGateway {
   getAllSports(): Promise<string[]> {
     return new Promise((resolve, reject) => {
       http.get(this.BetvictorUri, (res) => {
-        const { statusCode } = res;
+        const { statusCode, statusMessage } = res;
         let error;
         if (statusCode !== 200) {
-          error = new Error(`Request Failed. Status Code: ${statusCode}`);
+          error = new HttpError(statusCode, statusMessage);
           reject(error);
           return;
         }
