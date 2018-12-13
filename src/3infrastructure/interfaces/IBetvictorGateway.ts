@@ -1,6 +1,5 @@
-import { Sport } from "../dtos/Sport";
 
 
 export interface IBetvictorGateway {
-  getAllSports(): Promise<Sport>;
+  getAllSports(): Promise<String[]>;
 }
