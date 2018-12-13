@@ -4,7 +4,7 @@ import { ISportService } from '../../../../src/2application/services/interfaces/
 import { IBetvictorGateway } from '../../../../src/3infrastructure/interfaces/IBetvictorGateway';
 const assert = require('assert');
 
-const predefinedSport = require('../../mock_data/all_sports.json');
+const predefinedSport = require('./../../../mock_data/all_sports.json');
 
 it('should return an array of Sport instances', async function () {
 

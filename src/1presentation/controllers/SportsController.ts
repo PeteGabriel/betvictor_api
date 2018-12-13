@@ -1,5 +1,5 @@
 import { inject, injectable } from "inversify";
-import { ForbiddenResourceError } from '../../2application/domain/errors/ForbiddenResourceError';
+import { ResourceError } from '../../2application/domain/errors/ResourceError';
 import { Sport } from "../../2application/domain/Sport";
 import { ISportService } from '../../2application/services/interfaces/ISportService';
 import TYPES from '../../config/types';
@@ -41,7 +41,7 @@ export class SportsController implements Registrable {
       };
 
       const onErr = (err) =>  {
-        if (err instanceof ForbiddenResourceError) {
+        if (err instanceof ResourceError) {
           const response = new Problem(err.code,
             "",
             "Access to the resource was forbidden.",
@@ -66,7 +66,7 @@ export class SportsController implements Registrable {
       };
 
       const onErr = (err) =>  {
-        if (err instanceof ForbiddenResourceError) {
+        if (err instanceof ResourceError) {
           const response = new Problem(err.code,
             "",
             "Access to the resource was forbidden.",
@@ -91,7 +91,7 @@ export class SportsController implements Registrable {
       };
 
       const onErr = (err) =>  {
-        if (err instanceof ForbiddenResourceError) {
+        if (err instanceof ResourceError) {
           const response = new Problem(err.code,
             "",
             "Access to the resource was forbidden.",
@@ -106,8 +106,6 @@ export class SportsController implements Registrable {
       this.getEvent(req.params.id, req.params.eid, onRes, onErr);
     };
   }
-
-
 
   public async getSports(onResult: (data: Sport[]) => Sport[], onError: (err: any) => any): Promise<Sport[]> {
     return await this.sportsService.getSports()

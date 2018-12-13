@@ -6,7 +6,7 @@ import { ISportService } from '../../../../src/2application/services/interfaces/
 
 const assert = require('assert');
 
-const predefinedSport = require('../../mock_data/all_sports.json');
+const predefinedSport = require('./../../../mock_data/all_sports.json');
 
 it('should return a representation of all sports', async function () {
 

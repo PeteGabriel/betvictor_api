@@ -5,7 +5,7 @@ import { IBetvictorGateway } from "../../../src/3infrastructure/interfaces/IBetv
 const assert = require('assert');
 const nock = require('nock');
 
-const allSportsResponse = require('../mock_data/all_sports.json');
+const allSportsResponse = require('../../mock_data/all_sports.json');
 
 describe('Requesting all sports', function () {
  it('should return OK with valid response', async function () {
