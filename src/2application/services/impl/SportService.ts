@@ -3,7 +3,7 @@ import "reflect-metadata";
 import { ResourceError } from '../../domain/errors/ResourceError';
 import { HttpError } from "../../../2application/domain/errors/HttpError";
 import { IBetvictorGateway } from "../../../3infrastructure/interfaces/IBetvictorGateway";
-import TYPES from '../../../config/types';
+import TYPES from '../../../3infrastructure/config/types';
 import { Event } from "../../domain/Event";
 import { Sport } from "../../domain/Sport";
 import { ISportService } from "../interfaces/ISportService";

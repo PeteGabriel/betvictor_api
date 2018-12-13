@@ -2,10 +2,10 @@ import * as express from "express";
 import "reflect-metadata";
 import * as bodyParser from "body-parser";
 const errorHandler = require("errorhandler");
-import { logger } from './config/Logger';
-import container from './config/inversify.config';
+import { logger } from './3infrastructure/config/Logger';
+import container from './3infrastructure/config/inversify.config';
 import { Registrable } from "./1presentation/controllers/Registrable";
-import TYPES from "./config/types";
+import TYPES from "./3infrastructure/config/types";
 
 const app: express.Application = express();
 

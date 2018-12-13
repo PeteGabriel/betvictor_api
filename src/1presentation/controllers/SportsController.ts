@@ -2,7 +2,7 @@ import { inject, injectable } from "inversify";
 import { ResourceError } from '../../2application/domain/errors/ResourceError';
 import { Sport } from "../../2application/domain/Sport";
 import { ISportService } from '../../2application/services/interfaces/ISportService';
-import TYPES from '../../config/types';
+import TYPES from '../../3infrastructure/config/types';
 import { Problem, ProblemJsonMediaType } from "../responses/Problem";
 import { Event } from "./../../2application/domain/Event";
 import { Registrable } from "./Registrable";
